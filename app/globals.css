@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* Account for the fixed navbar when jumping to anchors */
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    @apply bg-ink text-chalk font-body antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Anton is a single-weight display face — never let the browser fake
+     heavier weights, which looks muddy. */
+  .font-display {
+    font-synthesis: none;
+  }
+
+  ::selection {
+    background-color: theme("colors.accent.DEFAULT");
+    color: #ffffff;
+  }
+
+  /* Focus ring for keyboard navigation */
+  :focus-visible {
+    outline: 2px solid theme("colors.accent.bright");
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: theme("colors.ink.DEFAULT");
+  }
+  ::-webkit-scrollbar-thumb {
+    background: theme("colors.ink.500");
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: theme("colors.accent.deep");
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-container px-5 sm:px-8 lg:px-12;
+  }
+
+  /* Magenta gradient text */
+  .text-gradient {
+    @apply bg-gradient-to-r from-accent-bright via-accent to-accent-deep bg-clip-text text-transparent;
+  }
+
+  /* Section eyebrow label */
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.25em] text-accent;
+  }
+
+  /* Glass surface — visible, not too transparent */
+  .glass {
+    @apply border border-white/10 bg-white/[0.04] backdrop-blur-md;
+  }
+
+  /* Hairline grid background */
+  .grid-bg {
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+}
+
+/* Lenis smooth scroll */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Pause CSS animations and remove transitions when the user prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

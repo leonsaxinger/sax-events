@@ -9,12 +9,12 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://sax-events.at"),
   title: `${site.name} — ${site.tagline}`,
   description:
-    "SAX-Events — fertige Event-Konzepte mit eigener Community. Partyanimation, Schaumpartys & Showacts. Next Generation Partying.",
+    "SAX-Events — fertige Event-Konzepte mit eigener Community. Partyanimation, Nightlife & Showacts. Next Generation Partying.",
   keywords: [
     "SAX-Events",
     "Partyanimation",
     "Eventagentur",
-    "Schaumparty",
+    "Nightlife",
     "FREAKY",
     "Traun",
     "Österreich",
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: `${site.name} — Next Generation Partying`,
     description:
-      "Fertige Event-Konzepte mit eigener Community. Partyanimation, Schaumpartys & Showacts.",
+      "Fertige Event-Konzepte mit eigener Community. Partyanimation, Nightlife & Showacts.",
     type: "website",
     locale: "de_AT",
     siteName: "SAX-Events",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${site.name} — Next Generation Partying`,
     description:
-      "Fertige Event-Konzepte mit eigener Community. Partyanimation, Schaumpartys & Showacts.",
+      "Fertige Event-Konzepte mit eigener Community. Partyanimation, Nightlife & Showacts.",
   },
 };
 

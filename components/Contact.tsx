@@ -186,7 +186,7 @@ export default function Contact() {
                   </label>
                   <select id="eventType" name="eventType" className={inputClass} defaultValue="">
                     <option value="" disabled>Bitte wählen</option>
-                    <option>Schaumparty / FREAKY</option>
+                    <option>FREAKY</option>
                     <option>Clubnight</option>
                     <option>Festival</option>
                     <option>Firmenfeier</option>

@@ -86,8 +86,8 @@ export const jars = [
     logo: "/logo/freaky-logo.png",
     tagline: "Let's Go Freaky.",
     description:
-      "Schaum, Bass, Enthemmung — unsere Schaumparty mit eigener Crowd.",
-    tags: ["Schaumparty", "Community", "Showacts"],
+      "Bass, Enthemmung, Free Specials — die Nacht, die anders tickt, mit eigener Crowd.",
+    tags: ["Nightlife", "Community", "Showacts"],
     href: "/events/freaky",
     cta: "FREAKY ansehen",
     available: true,

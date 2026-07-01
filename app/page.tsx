@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import { HeroSection01 } from "@/components/ui/hero-01";
 import Problem from "@/components/Problem";
 import Stats from "@/components/Stats";
+import Partners from "@/components/Partners";
 import EventsJar from "@/components/EventsJar";
 import Services from "@/components/Services";
 import Gallery from "@/components/Gallery";
@@ -18,6 +19,7 @@ export default function Home() {
         <HeroSection01 />
         <Problem />
         <Stats />
+        <Partners />
         <EventsJar />
         <Services />
         <Gallery />

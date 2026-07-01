@@ -5,7 +5,6 @@ import {
   motion,
   useScroll,
   useTransform,
-  useMotionTemplate,
   useReducedMotion,
   type MotionValue,
 } from "framer-motion";
@@ -51,16 +50,15 @@ function KineticWord({
   const [a, b] = range;
   const mid = (a + b) / 2;
   const opacity = useTransform(progress, [a, mid], [0, 1]);
-  const x = useTransform(progress, [a, b], [dir * 90, 0]);
-  const y = useTransform(progress, [a, b], [44, 0]);
+  const x = useTransform(progress, [a, b], [dir * 120, 0]);
+  const y = useTransform(progress, [a, b], [56, 0]);
   // Overshoot: settles slightly past 1 then back for a punchy pop.
-  const scale = useTransform(progress, [a, mid, b], [1.22, 1.05, 1]);
-  const blurPx = useTransform(progress, [a, mid], [16, 0]);
-  const filter = useMotionTemplate`blur(${blurPx}px)`;
+  // Transform-only (no blur) so it composites on the GPU and stays smooth.
+  const scale = useTransform(progress, [a, mid, b], [1.28, 1.06, 1]);
 
   return (
     <motion.span
-      style={{ opacity, x, y, scale, filter }}
+      style={{ opacity, x, y, scale }}
       className={`block will-change-transform ${accent ? "text-accent" : ""}`}
     >
       {text}
@@ -113,8 +111,9 @@ export function HeroSection01() {
   const logoScale = useTransform(scrollYProgress, [0, 0.18, 0.26], [1, 1.12, 0.7]);
   const logoOpacity = useTransform(scrollYProgress, [0.16, 0.26], [1, 0]);
   // Glow flare behind the logo that peaks right as the logo dissolves.
+  // Opacity-only (fixed size) — animating scale on a blurred layer re-rasters
+  // the blur every frame and was the main source of scroll lag.
   const glowOpacity = useTransform(scrollYProgress, [0.1, 0.2, 0.32], [0, 0.9, 0]);
-  const glowScale = useTransform(scrollYProgress, [0.1, 0.32], [0.6, 1.6]);
 
   const hintOpacity = useTransform(scrollYProgress, [0, 0.07], [1, 0]);
 
@@ -143,8 +142,8 @@ export function HeroSection01() {
 
         {/* Glow flare that blooms as the logo dissolves into the headline. */}
         <motion.div
-          style={{ opacity: glowOpacity, scale: glowScale }}
-          className="pointer-events-none absolute left-1/2 top-1/2 z-10 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.85),rgba(224,33,138,0.5)_40%,transparent_70%)] blur-2xl"
+          style={{ opacity: glowOpacity }}
+          className="pointer-events-none absolute left-1/2 top-1/2 z-10 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.8),rgba(224,33,138,0.45)_42%,transparent_70%)] blur-2xl"
         />
 
         {/* Logo — centered, lifts, pulses, then fades. Wrapper owns the

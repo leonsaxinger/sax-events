@@ -1,9 +1,10 @@
 import { nightlife } from "@/data/site";
 import Reveal from "./Reveal";
+import Sticker from "./Sticker";
 import { ArrowRight } from "./Icons";
 
 const pointColors = ["text-acid", "text-bubble", "text-coral"];
-const pointBorders = ["hover:border-acid/40", "hover:border-bubble/40", "hover:border-coral/40"];
+const pointBars = ["bg-acid", "bg-bubble", "bg-coral"];
 
 export default function Problem() {
   return (
@@ -19,32 +20,42 @@ export default function Problem() {
       />
 
       <div className="container-x relative">
-        {/* Problem statement — bold editorial, no side image */}
-        <Reveal className="max-w-4xl">
-          <p className="eyebrow mb-6 text-coral">{nightlife.eyebrow}</p>
-          <h2 className="font-display text-5xl uppercase leading-[0.9] tracking-tight sm:text-6xl lg:text-7xl">
-            {nightlife.heading}{" "}
-            <span className="text-coral">{nightlife.headingAccent}</span>
-          </h2>
-          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-chalk-muted sm:text-xl">
-            {nightlife.body}
-          </p>
-        </Reveal>
+        {/* Section index + headline, asymmetric editorial split */}
+        <div className="grid gap-y-8 lg:grid-cols-[auto_1fr] lg:gap-x-14">
+          <Reveal className="flex items-start gap-4 lg:flex-col lg:gap-2">
+            <span className="ghost-num font-display text-7xl leading-none sm:text-8xl">01</span>
+            <span className="mt-2 font-display text-sm uppercase tracking-[0.3em] text-coral lg:mt-0">
+              {nightlife.eyebrow}
+            </span>
+          </Reveal>
 
-        {/* Three points */}
-        <div className="mt-16 grid gap-4 sm:grid-cols-3">
+          <Reveal>
+            <h2 className="font-display text-5xl uppercase leading-[0.88] tracking-tight sm:text-6xl lg:text-7xl">
+              {nightlife.heading}{" "}
+              <span className="text-coral">{nightlife.headingAccent}</span>
+            </h2>
+            {/* Body as an oversized drop-cap pull quote, offset right */}
+            <p className="dropcap mt-10 max-w-2xl border-l-2 border-coral/40 pl-6 text-xl leading-relaxed text-chalk sm:text-2xl lg:ml-auto">
+              {nightlife.body}
+            </p>
+          </Reveal>
+        </div>
+
+        {/* Three points — big ghost numbers, accent bar grows on hover */}
+        <div className="mt-20 grid gap-4 sm:grid-cols-3">
           {nightlife.points.map((p, i) => (
             <Reveal
               key={p.title}
               delay={i * 0.12}
-              className={`group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.025] p-7 transition-colors duration-300 ${pointBorders[i % 3]}`}
+              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.025] p-7"
             >
-              <span className="pointer-events-none absolute -right-2 -top-6 font-display text-[7rem] leading-none text-white/[0.04]">
+              <span
+                className={`absolute inset-x-0 top-0 h-1 origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100 ${pointBars[i % 3]}`}
+              />
+              <span className="ghost-num pointer-events-none absolute -right-1 -top-4 font-display text-[7rem] leading-none">
                 {i + 1}
               </span>
-              <span className={`relative font-display text-lg ${pointColors[i % 3]}`}>
-                0{i + 1}
-              </span>
+              <span className={`relative font-display text-lg ${pointColors[i % 3]}`}>0{i + 1}</span>
               <h3 className="relative mt-3 font-display text-2xl uppercase tracking-tight">
                 {p.title}
               </h3>
@@ -53,7 +64,7 @@ export default function Problem() {
           ))}
         </div>
 
-        {/* Solution — full-bleed image band */}
+        {/* Solution — full-bleed image band with a slapped-on sticker */}
         <Reveal className="mt-20 sm:mt-28">
           <div className="relative overflow-hidden rounded-[2rem] border border-white/10">
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -64,6 +75,14 @@ export default function Problem() {
             />
             <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/85 to-ink/40" />
             <div className="absolute inset-0 bg-accent/10 mix-blend-overlay" />
+
+            <Sticker
+              rotate={9}
+              color="acid"
+              className="absolute right-5 top-5 z-10 hidden sm:inline-flex"
+            >
+              von jung · für jung
+            </Sticker>
 
             <div className="relative max-w-2xl px-8 py-16 sm:px-12 sm:py-20 lg:py-24">
               <div className="flex items-center gap-4">

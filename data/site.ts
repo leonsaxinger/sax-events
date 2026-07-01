@@ -26,7 +26,6 @@ export const site = {
 // ---- Navigation ------------------------------------------------------
 // Anker mit "/#..." damit sie auch von Unterseiten (Team/Office) funktionieren.
 export const navLinks = [
-  { label: "Konzepte", href: "/#konzepte" },
   { label: "FREAKY", href: "/events/freaky" },
   { label: "SOVU", href: "/events/sovu" },
   { label: "Team", href: "/team" },

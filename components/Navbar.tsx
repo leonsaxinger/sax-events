@@ -32,7 +32,7 @@ export default function Navbar() {
           scrolled ? "shadow-[0_8px_30px_rgba(0,0,0,0.5)]" : ""
         }`}
       >
-        <a href="#start" aria-label="SAX-Events Startseite" className="cursor-pointer">
+        <a href="/" aria-label="SAX-Events Startseite" className="cursor-pointer">
           <Logo />
         </a>
 

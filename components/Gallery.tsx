@@ -8,8 +8,8 @@ import SmartImg from "./SmartImg";
 import { Close, ArrowRight } from "./Icons";
 
 const aspectClass: Record<string, string> = {
-  tall: "row-span-2 aspect-[3/4]",
-  wide: "aspect-[16/10]",
+  tall: "aspect-[3/4]",
+  wide: "aspect-[4/3]",
   square: "aspect-square",
 };
 
@@ -52,12 +52,13 @@ export default function Gallery() {
           </p>
         </Reveal>
 
-        <div className="mt-12 grid auto-rows-[1fr] grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
+        {/* Tight masonry — CSS columns pack the tiles with no floating gaps. */}
+        <div className="mt-12 columns-2 gap-3 sm:gap-4 lg:columns-3">
           {gallery.map((img, i) => (
             <Reveal
               key={img.src}
               delay={(i % 3) * 0.06}
-              className={aspectClass[img.aspect] ?? "aspect-square"}
+              className={`mb-3 break-inside-avoid sm:mb-4 ${aspectClass[img.aspect] ?? "aspect-square"}`}
             >
               <button
                 type="button"
@@ -71,6 +72,9 @@ export default function Gallery() {
                   className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
                 />
                 <span className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <span className="pointer-events-none absolute right-3 top-3 font-display text-sm text-white/70 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  0{i + 1}
+                </span>
               </button>
             </Reveal>
           ))}

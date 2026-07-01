@@ -10,6 +10,7 @@ import Instagram from "@/components/Instagram";
 import Faq from "@/components/Faq";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import Ticker from "@/components/Ticker";
 
 export default function Home() {
   return (
@@ -20,8 +21,10 @@ export default function Home() {
         <Problem />
         <Stats />
         <Partners />
+        <Ticker text="Next Generation Partying" bg="bg-accent" fg="text-ink" />
         <EventsJar />
         <Services />
+        <Ticker text="Echte Momente · Keine Inszenierung" bg="bg-acid" fg="text-ink" speed="slow" />
         <Gallery />
         <Instagram />
         <Faq />

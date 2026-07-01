@@ -20,9 +20,9 @@ export default function Instagram() {
   const handle = site.instagramHandle;
 
   return (
-    <section id="instagram" className="relative py-24 sm:py-32">
+    <section id="instagram" className="relative py-20 sm:py-32">
       <div className="container-x">
-        <Reveal className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
+        <Reveal className="flex flex-col items-start justify-between gap-7 sm:flex-row sm:items-end sm:gap-6">
           <div className="max-w-2xl">
             <p className="eyebrow mb-4 text-grape">
               <InstagramIcon className="h-4 w-4" />
@@ -31,7 +31,7 @@ export default function Instagram() {
             <h2 className="font-display text-4xl uppercase leading-[0.95] tracking-tight sm:text-5xl">
               Folge dem Wahnsinn.
             </h2>
-            <p className="mt-4 text-lg text-chalk-muted">
+            <p className="mt-5 max-w-md text-base text-chalk-muted sm:mt-4 sm:text-lg">
               Jede Nacht, jeder Moment, jede Crowd — live auf Instagram.
             </p>
           </div>
@@ -48,7 +48,7 @@ export default function Instagram() {
           </Magnetic>
         </Reveal>
 
-        <div className="mt-12 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-6">
+        <div className="mt-10 grid grid-cols-3 gap-2.5 sm:mt-12 sm:gap-4 md:grid-cols-3 lg:grid-cols-6">
           {tiles.map((src, i) => (
             <Reveal
               key={src}

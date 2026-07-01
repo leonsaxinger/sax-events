@@ -110,7 +110,7 @@ export default function SovuPage() {
                   <div className="text-xs uppercase tracking-[0.18em]" style={{ color: MUTED }}>
                     {f.label}
                   </div>
-                  <div className="mt-2 font-display text-2xl uppercase tracking-tight sm:text-3xl">
+                  <div className="mt-2 font-display text-xl uppercase leading-tight tracking-tight sm:text-3xl">
                     {f.value}
                   </div>
                 </Reveal>
@@ -126,13 +126,13 @@ export default function SovuPage() {
           return (
             <section
               key={p.no}
-              className="relative flex min-h-[92svh] items-center overflow-hidden py-24"
+              className="relative flex min-h-[78svh] items-center overflow-hidden py-20 sm:min-h-[92svh] sm:py-24"
               style={{ background: s.bg, color: s.text }}
             >
-              {/* huge ghost numeral */}
+              {/* huge ghost numeral — opposite side of the text */}
               <span
-                className={`pointer-events-none absolute top-1/2 -translate-y-1/2 font-display text-[40vw] leading-none sm:text-[28rem] ${
-                  alignRight ? "left-[-4vw]" : "right-[-4vw]"
+                className={`pointer-events-none absolute top-1/2 -translate-y-1/2 font-display text-[34vw] leading-none sm:text-[24rem] lg:text-[28rem] ${
+                  alignRight ? "right-[-6vw] lg:left-[-4vw] lg:right-auto" : "right-[-6vw]"
                 }`}
                 style={{ color: s.ghost }}
               >
@@ -140,8 +140,8 @@ export default function SovuPage() {
               </span>
 
               <div className="container-x relative z-10">
-                <Reveal className={`max-w-2xl ${alignRight ? "ml-auto text-right" : ""}`}>
-                  <div className={`flex items-center gap-3 ${alignRight ? "justify-end" : ""}`}>
+                <Reveal className={`max-w-2xl ${alignRight ? "lg:ml-auto lg:text-right" : ""}`}>
+                  <div className={`flex flex-wrap items-center gap-3 ${alignRight ? "lg:justify-end" : ""}`}>
                     <span
                       className="rounded-full border px-4 py-1.5 font-display text-sm uppercase tracking-wide"
                       style={{ borderColor: s.accent, color: s.accent }}
@@ -152,10 +152,10 @@ export default function SovuPage() {
                       {p.label}
                     </span>
                   </div>
-                  <h2 className="mt-6 font-display text-6xl uppercase leading-[0.9] tracking-tight sm:text-7xl lg:text-8xl">
+                  <h2 className="mt-6 font-display text-5xl uppercase leading-[0.9] tracking-tight sm:text-7xl lg:text-8xl">
                     {p.title}
                   </h2>
-                  <p className={`mt-6 max-w-lg text-lg leading-relaxed sm:text-xl ${alignRight ? "ml-auto" : ""}`} style={{ color: s.muted }}>
+                  <p className={`mt-5 max-w-lg text-lg leading-relaxed sm:mt-6 sm:text-xl ${alignRight ? "lg:ml-auto" : ""}`} style={{ color: s.muted }}>
                     {p.text}
                   </p>
                 </Reveal>

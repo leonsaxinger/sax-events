@@ -31,7 +31,7 @@ export default function Problem() {
         </Reveal>
 
         {/* Headline + lead, magazine-style bottom-aligned split */}
-        <div className="mt-10 grid gap-x-16 gap-y-8 lg:grid-cols-[1.35fr_1fr] lg:items-end">
+        <div className="mt-12 grid gap-x-16 gap-y-10 sm:mt-10 sm:gap-y-8 lg:grid-cols-[1.35fr_1fr] lg:items-end">
           <Reveal>
             <h2 className="font-display text-5xl uppercase leading-[0.86] tracking-tight sm:text-6xl lg:text-7xl">
               {nightlife.heading}{" "}

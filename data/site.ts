@@ -184,48 +184,57 @@ export const freaky = {
   ],
 };
 
-// ---- SOVU im SURACE am See (Day-to-Night Lake Event) -----------------
+// ---- SOVU (Day-to-Night Open-Air Sommer-Event) -----------------------
+// Bewusst allgemein gehalten & bildfrei (echte Fotos folgen).
 export const sovu = {
   name: "SOVU",
-  venue: "SURACE am See",
-  tagline: "Day-to-Night Summer Lake Event",
+  tagline: "Day-to-Night Open Air",
+  location: "Open Air · Österreich",
   intro:
-    "Ein Tag am Wasser, der nie aufhört: Sonne, See und entspannte Drinks am Nachmittag — bis aus der goldenen Stunde eine Nacht voller Musik wird. SOVU im SURACE am See.",
+    "SOVU ist unser Day-to-Night Sommer-Event: Es startet entspannt am Nachmittag mit Sonne, Drinks und guter Gesellschaft — und wächst über die goldene Stunde zur Party, die bis tief in die Nacht geht. Ein Tag, ein Ort, ein Vibe, der einfach nicht aufhört.",
+  // Schnelle Fakten zum Überblick
+  facts: [
+    { label: "Format", value: "Day-to-Night Open Air" },
+    { label: "Saison", value: "Sommer" },
+    { label: "Termin", value: "folgt bald" },
+    { label: "Für wen", value: "Die neue Generation" },
+  ],
+  // Der Tagesverlauf — reine Stimmungsbeschreibung, ohne Fotos.
   phases: [
     {
       no: "01",
+      time: "Nachmittag",
       label: "Day Vibe",
-      title: "Ankommen am See.",
-      text: "Sonne auf der Haut, Blick übers Wasser, ein kühler Drink auf der Terrasse. Der entspannte Start in den Tag.",
-      img: "/images/sovu/day-lake.jpg",
+      title: "Ankommen & chillen.",
+      text: "Sonne auf der Haut, entspannte Beats und ein kühler Drink. Ein lockerer Start, bei dem alle ankommen und die Crowd zusammenwächst.",
     },
     {
       no: "02",
-      label: "Food & Aperitivo",
-      title: "Aperitivo im SURACE.",
-      text: "Mediterrane Küche, frische Drinks, gute Gesellschaft — der genussvolle Übergang in den Abend.",
-      img: "/images/sovu/food-1.jpg",
+      time: "Früher Abend",
+      label: "Aperitivo",
+      title: "Drinks & gute Leute.",
+      text: "Der genussvolle Übergang in den Abend: Aperitivo, gute Musik und eine Stimmung, die langsam Fahrt aufnimmt.",
     },
     {
       no: "03",
-      label: "Sunset Moment",
-      title: "Goldene Stunde.",
-      text: "Die Sonne sinkt über den See, die Musik wird wärmer, die Stimmung dichter. Der Moment, auf den alle warten.",
-      img: "/images/sovu/sunset-drone.jpg",
+      time: "Goldene Stunde",
+      label: "Sunset",
+      title: "Die goldene Stunde.",
+      text: "Wenn die Sonne tiefer steht, wird die Musik wärmer und die Stimmung dichter. Der Moment, auf den alle warten.",
     },
     {
       no: "04",
-      label: "Night Party",
+      time: "Nacht",
+      label: "Night",
       title: "Die Nacht beginnt.",
-      text: "DJ, Lights, Crowd. Aus dem Sundowner wird die Party — direkt am Wasser, bis tief in die Nacht.",
-      img: "/images/sovu/night-venue.jpg",
+      text: "DJ, Lights, Crowd. Aus dem Sundowner wird die Party — voller Energie, bis tief in die Nacht.",
     },
   ],
   process: [
-    { no: "01", title: "Datum finden", text: "Gemeinsam wählen wir den perfekten Termin am See — passend zu Saison, Wetter und Location." },
-    { no: "02", title: "Event anmelden", text: "Behörden, Genehmigungen, Location-Abstimmung — wir übernehmen die komplette Organisation." },
-    { no: "03", title: "Promo vor Ort", text: "Promo-Shoot mit Statisten & Content-Crew direkt am See — Reels und Visuals, die vorab Hype auf Instagram & TikTok machen." },
-    { no: "04", title: "Aufbau & Event-Tag", text: "Technik, Bar, Showacts und Crew: Wir bauen auf und liefern den Tag — von der Sonne am Nachmittag bis tief in die Nacht." },
+    { no: "01", title: "Termin & Location", text: "Wir wählen Termin und Location — passend zu Saison, Wetter und Vibe." },
+    { no: "02", title: "Organisation", text: "Genehmigungen, Behörden, Planung — wir übernehmen die komplette Organisation von A bis Z." },
+    { no: "03", title: "Promo & Hype", text: "Promo-Content mit Crew & Statisten — Reels und Visuals, die vorab Hype auf Instagram & TikTok machen." },
+    { no: "04", title: "Event-Tag", text: "Technik, Bar, Showacts und Crew: Wir liefern den Tag — von der Sonne am Nachmittag bis tief in die Nacht." },
   ],
 };
 

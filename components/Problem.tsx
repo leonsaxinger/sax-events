@@ -1,10 +1,12 @@
 import { nightlife } from "@/data/site";
 import Reveal from "./Reveal";
-import Sticker from "./Sticker";
 import { ArrowRight } from "./Icons";
 
 const pointColors = ["text-acid", "text-bubble", "text-coral"];
 const pointBars = ["bg-acid", "bg-bubble", "bg-coral"];
+
+// Split the lead so the closing statement can carry visual weight.
+const [leadMain, leadEmph] = nightlife.body.split("—").map((s) => s.trim());
 
 export default function Problem() {
   return (
@@ -20,23 +22,26 @@ export default function Problem() {
       />
 
       <div className="container-x relative">
-        {/* Section index + headline, asymmetric editorial split */}
-        <div className="grid gap-y-8 lg:grid-cols-[auto_1fr] lg:gap-x-14">
-          <Reveal className="flex items-start gap-4 lg:flex-col lg:gap-2">
-            <span className="ghost-num font-display text-7xl leading-none sm:text-8xl">01</span>
-            <span className="mt-2 font-display text-sm uppercase tracking-[0.3em] text-coral lg:mt-0">
-              {nightlife.eyebrow}
-            </span>
-          </Reveal>
+        {/* Label row */}
+        <Reveal className="flex items-center gap-5">
+          <span className="ghost-num font-display text-6xl leading-none sm:text-7xl">01</span>
+          <span className="font-display text-sm uppercase tracking-[0.3em] text-coral">
+            {nightlife.eyebrow}
+          </span>
+        </Reveal>
 
+        {/* Headline + lead, magazine-style bottom-aligned split */}
+        <div className="mt-10 grid gap-x-16 gap-y-8 lg:grid-cols-[1.35fr_1fr] lg:items-end">
           <Reveal>
-            <h2 className="font-display text-5xl uppercase leading-[0.88] tracking-tight sm:text-6xl lg:text-7xl">
+            <h2 className="font-display text-5xl uppercase leading-[0.86] tracking-tight sm:text-6xl lg:text-7xl">
               {nightlife.heading}{" "}
               <span className="text-coral">{nightlife.headingAccent}</span>
             </h2>
-            {/* Body as an oversized drop-cap pull quote, offset right */}
-            <p className="dropcap mt-10 max-w-2xl border-l-2 border-coral/40 pl-6 text-xl leading-relaxed text-chalk sm:text-2xl lg:ml-auto">
-              {nightlife.body}
+          </Reveal>
+          <Reveal delay={0.1}>
+            <p className="text-xl leading-relaxed text-chalk-muted sm:text-[1.35rem]">
+              {leadMain} —{" "}
+              <span className="font-semibold text-coral">{leadEmph}</span>
             </p>
           </Reveal>
         </div>
@@ -75,14 +80,6 @@ export default function Problem() {
             />
             <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/85 to-ink/40" />
             <div className="absolute inset-0 bg-accent/10 mix-blend-overlay" />
-
-            <Sticker
-              rotate={9}
-              color="acid"
-              className="absolute right-5 top-5 z-10 hidden sm:inline-flex"
-            >
-              von jung · für jung
-            </Sticker>
 
             <div className="relative max-w-2xl px-8 py-16 sm:px-12 sm:py-20 lg:py-24">
               <div className="flex items-center gap-4">

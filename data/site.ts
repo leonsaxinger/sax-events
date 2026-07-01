@@ -264,11 +264,16 @@ export const office = {
 };
 
 // ---- Galerie (echte Fotos, Mix aus FREAKY + universell) --------------
+// feature: true => tile spans 2x2 (hero tiles in the bento grid).
 export const gallery = [
-  { src: "/images/p-freaky-2.jpg", alt: "FREAKY Moment", aspect: "tall" },
-  { src: "/images/p-uni-1.jpg", alt: "Crowd", aspect: "wide" },
-  { src: "/images/p-freaky-5.jpg", alt: "FREAKY Moment", aspect: "square" },
-  { src: "/images/p-uni-3.jpg", alt: "Nacht", aspect: "square" },
-  { src: "/images/p-freaky-7.jpg", alt: "FREAKY Moment", aspect: "tall" },
-  { src: "/images/p-uni-5.jpg", alt: "Tanzfläche", aspect: "wide" },
+  { src: "/images/p-freaky-2.jpg", alt: "FREAKY Moment", feature: true },
+  { src: "/images/p-uni-1.jpg", alt: "Crowd auf der Tanzfläche" },
+  { src: "/images/p-freaky-5.jpg", alt: "FREAKY Moment" },
+  { src: "/images/p-uni-3.jpg", alt: "Nacht" },
+  { src: "/images/p-freaky-7.jpg", alt: "FREAKY Moment" },
+  { src: "/images/p-uni-5.jpg", alt: "Party", feature: true },
+  { src: "/images/p-freaky-8.jpg", alt: "FREAKY Moment" },
+  { src: "/images/p-uni-6.jpg", alt: "Nacht" },
+  { src: "/images/p-freaky-3.jpg", alt: "FREAKY Moment" },
+  { src: "/images/p-uni-2.jpg", alt: "Crowd" },
 ];

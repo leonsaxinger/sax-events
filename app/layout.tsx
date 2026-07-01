@@ -4,7 +4,6 @@ import { site } from "@/data/site";
 import SmoothScroll from "@/components/SmoothScroll";
 import Preloader from "@/components/Preloader";
 import Grain from "@/components/Grain";
-import Cursor from "@/components/Cursor";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -52,7 +51,6 @@ export default function RootLayout({
         <Preloader />
         <SmoothScroll />
         <Grain />
-        <Cursor />
         {children}
       </body>
     </html>

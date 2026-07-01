@@ -7,11 +7,11 @@ import Reveal from "./Reveal";
 import SmartImg from "./SmartImg";
 import { Close, ArrowRight } from "./Icons";
 
-const aspectClass: Record<string, string> = {
-  tall: "aspect-[3/4]",
-  wide: "aspect-[4/3]",
-  square: "aspect-square",
-};
+// Alternate the big feature tiles left / right for a more dynamic bento.
+let featSeen = 0;
+const featureCol: (string | null)[] = gallery.map((img) =>
+  img.feature ? (featSeen++ % 2 === 1 ? "lg:col-start-3" : null) : null
+);
 
 export default function Gallery() {
   const [open, setOpen] = useState<number | null>(null);
@@ -52,28 +52,32 @@ export default function Gallery() {
           </p>
         </Reveal>
 
-        {/* Tight masonry — CSS columns pack the tiles with no floating gaps. */}
-        <div className="mt-12 columns-2 gap-3 sm:gap-4 lg:columns-3">
+        {/* Bento grid — dense auto-flow packs feature (2x2) + regular tiles
+            into complete rows, so there is no floating / dead space. */}
+        <div className="mt-12 grid grid-flow-dense auto-rows-[9rem] grid-cols-2 gap-2.5 sm:auto-rows-[11rem] sm:gap-3 lg:grid-cols-4 lg:auto-rows-[13rem]">
           {gallery.map((img, i) => (
             <Reveal
               key={img.src}
-              delay={(i % 3) * 0.06}
-              className={`mb-3 break-inside-avoid sm:mb-4 ${aspectClass[img.aspect] ?? "aspect-square"}`}
+              delay={(i % 4) * 0.05}
+              className={`h-full ${img.feature ? `col-span-2 row-span-2 ${featureCol[i] ?? ""}` : ""}`}
             >
               <button
                 type="button"
                 onClick={() => setOpen(i)}
                 aria-label="Foto vergrößern"
-                className="group relative block h-full w-full cursor-pointer overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-ink-700 to-ink-600"
+                className="group relative block h-full w-full cursor-pointer overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-ink-700 to-ink-600 sm:rounded-2xl"
               >
                 <SmartImg
                   src={img.src}
                   alt={img.alt}
-                  className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
+                  className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
-                <span className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                <span className="pointer-events-none absolute right-3 top-3 font-display text-sm text-white/70 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                  0{i + 1}
+                <span className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <span className="pointer-events-none absolute bottom-3 left-3 flex items-center gap-2 opacity-0 transition-all duration-300 group-hover:opacity-100">
+                  <span className="h-px w-5 bg-accent" />
+                  <span className="font-display text-xs uppercase tracking-widest text-white/90">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
                 </span>
               </button>
             </Reveal>

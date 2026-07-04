@@ -238,6 +238,51 @@ export const sovu = {
   ],
 };
 
+// ---- Team (Struktur: Management / Social Media / Acts & Performers) --
+// TODO: echte Namen ergänzen ("Name folgt" ersetzen) + Fotos nach
+// public/images/team/ legen (Dateinamen unten) — bis dahin zeigt SmartImg
+// automatisch "Foto folgt".
+export const team = {
+  eyebrow: "Die Crew",
+  intro:
+    "Events wie unsere entstehen nicht allein. Hinter SAX-Events steht eine Crew aus Organisation, Content und Show — von jung für jung.",
+  departments: [
+    {
+      no: "01",
+      name: "Management",
+      accent: "accent" as const,
+      blurb: "Konzept, Booking, Organisation — hier laufen alle Fäden zusammen.",
+      members: [
+        { name: "Leon Saxinger", role: "Founder & Event Management", img: "/images/team/leon.jpg" },
+        { name: "Name folgt", role: "Organisation & Booking", img: "/images/team/management-2.jpg" },
+      ],
+    },
+    {
+      no: "02",
+      name: "Social Media",
+      accent: "grape" as const,
+      blurb: "1,5 Mio Views im Monat kommen nicht von allein — unser Content-Team liefert.",
+      members: [
+        { name: "Name folgt", role: "Content Creation", img: "/images/team/social-1.jpg" },
+        { name: "Name folgt", role: "Video & Schnitt", img: "/images/team/social-2.jpg" },
+        { name: "Name folgt", role: "Fotografie", img: "/images/team/social-3.jpg" },
+      ],
+    },
+    {
+      no: "03",
+      name: "Acts & Performers",
+      accent: "coral" as const,
+      blurb: "Showacts, Tänzerinnen und Hosts — die Energie auf der Bühne und in der Crowd.",
+      members: [
+        { name: "Name folgt", role: "Showacts", img: "/images/team/act-1.jpg" },
+        { name: "Name folgt", role: "Dance", img: "/images/team/act-2.jpg" },
+        { name: "Name folgt", role: "Dance", img: "/images/team/act-3.jpg" },
+        { name: "Name folgt", role: "Host & Moderation", img: "/images/team/act-4.jpg" },
+      ],
+    },
+  ],
+};
+
 // ---- Office / Creative Space (Vermietung) ----------------------------
 export const office = {
   name: "SAX Creative Space",

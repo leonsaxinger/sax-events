@@ -9,7 +9,7 @@ export default function Services() {
         {/* Left: heading block with ghost index + sticker */}
         <Reveal className="relative lg:sticky lg:top-28 lg:self-start">
           <div className="flex items-center gap-4">
-            <span className="ghost-num font-display text-6xl leading-none sm:text-7xl">02</span>
+            <span className="ghost-num font-display text-6xl leading-none sm:text-7xl">03</span>
             <span className="font-display text-sm uppercase tracking-[0.3em] text-acid">
               Was wir machen
             </span>

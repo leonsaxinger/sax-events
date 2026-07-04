@@ -35,36 +35,60 @@ const socialLinks = [
 const inputClass =
   "w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3.5 text-chalk placeholder:text-chalk-dim transition-colors duration-200 focus:border-accent focus:bg-white/[0.06] focus:outline-none";
 
-export default function Contact() {
-  const [sent, setSent] = useState(false);
+/** Read the enquiry fields out of the form. */
+function readForm(form: HTMLFormElement) {
+  const data = new FormData(form);
+  return {
+    name: String(data.get("name") || ""),
+    email: String(data.get("email") || ""),
+    phone: String(data.get("phone") || ""),
+    eventType: String(data.get("eventType") || ""),
+    date: String(data.get("date") || ""),
+    message: String(data.get("message") || ""),
+  };
+}
 
+export default function Contact() {
+  const [sent, setSent] = useState<false | "mail" | "wa">(false);
+
+  // TODO: Für echtes Server-Handling an eine API-Route / Formspree / Resend POSTen.
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const data = new FormData(e.currentTarget);
+    const f = readForm(e.currentTarget);
 
-    // TODO: Für echtes Server-Handling an eine API-Route / Formspree / Resend POSTen.
-    const name = String(data.get("name") || "");
-    const email = String(data.get("email") || "");
-    const phone = String(data.get("phone") || "");
-    const eventType = String(data.get("eventType") || "");
-    const date = String(data.get("date") || "");
-    const message = String(data.get("message") || "");
-
-    const subject = encodeURIComponent(`Anfrage von ${name} — ${eventType || "Event"}`);
+    const subject = encodeURIComponent(`Anfrage von ${f.name} — ${f.eventType || "Event"}`);
     const body = encodeURIComponent(
       [
-        `Name: ${name}`,
-        `E-Mail: ${email}`,
-        `Telefon: ${phone}`,
-        `Art des Events: ${eventType}`,
-        `Wunschdatum: ${date}`,
+        `Name: ${f.name}`,
+        `E-Mail: ${f.email}`,
+        `Telefon: ${f.phone}`,
+        `Art des Events: ${f.eventType}`,
+        `Wunschdatum: ${f.date}`,
         "",
-        message,
+        f.message,
       ].join("\n")
     );
 
     window.location.href = `mailto:${site.contact.email}?subject=${subject}&body=${body}`;
-    setSent(true);
+    setSent("mail");
+  };
+
+  // Same enquiry, sent as a prefilled WhatsApp chat — the channel most
+  // visitors actually use, and more reliable than mailto on phones.
+  const handleWhatsApp = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const form = e.currentTarget.closest("form");
+    if (!form) return;
+    if (!form.reportValidity()) return;
+    const f = readForm(form);
+
+    const lines = [`Hi SAX-Events! Ich möchte anfragen:`, ``, `Name: ${f.name}`];
+    if (f.eventType) lines.push(`Event: ${f.eventType}`);
+    if (f.date) lines.push(`Wunschdatum: ${f.date}`);
+    lines.push(``, f.message);
+    const text = encodeURIComponent(lines.join("\n"));
+
+    window.open(`https://wa.me/${site.contact.whatsapp}?text=${text}`, "_blank", "noopener");
+    setSent("wa");
   };
 
   return (
@@ -145,8 +169,9 @@ export default function Contact() {
               </span>
               <h3 className="mt-6 font-display text-2xl font-bold">Fast geschafft!</h3>
               <p className="mt-3 max-w-xs text-chalk-muted">
-                Dein E-Mail-Programm öffnet sich mit der fertigen Anfrage.
-                Einfach abschicken — wir melden uns.
+                {sent === "wa"
+                  ? "WhatsApp öffnet sich mit deiner fertigen Anfrage. Einfach abschicken — wir melden uns."
+                  : "Dein E-Mail-Programm öffnet sich mit der fertigen Anfrage. Einfach abschicken — wir melden uns."}
               </p>
               <button
                 type="button"
@@ -210,13 +235,23 @@ export default function Contact() {
                 <textarea id="message" name="message" required rows={4} placeholder="Erzähl uns von deinem Event …" className={`${inputClass} resize-none`} />
               </div>
 
-              <button
-                type="submit"
-                className="group inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-accent px-7 py-4 text-base font-semibold text-white shadow-glow transition-all duration-200 hover:bg-accent-bright hover:shadow-glow-lg"
-              >
-                Anfrage senden
-                <ArrowRight className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" />
-              </button>
+              <div className="grid gap-3 sm:grid-cols-2">
+                <button
+                  type="submit"
+                  className="group inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-accent px-7 py-4 text-base font-semibold text-white shadow-glow transition-all duration-200 hover:bg-accent-bright hover:shadow-glow-lg"
+                >
+                  Per E-Mail senden
+                  <ArrowRight className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" />
+                </button>
+                <button
+                  type="button"
+                  onClick={handleWhatsApp}
+                  className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 px-7 py-4 text-base font-semibold text-chalk transition-colors duration-200 hover:border-[#25D366]/60 hover:text-[#25D366]"
+                >
+                  <WhatsApp className="h-5 w-5" />
+                  Per WhatsApp senden
+                </button>
+              </div>
               <p className="text-center text-xs text-chalk-dim">
                 Mit dem Absenden stimmst du der Verarbeitung deiner Daten zur
                 Bearbeitung der Anfrage zu.

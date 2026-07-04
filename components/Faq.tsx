@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { site } from "@/data/site";
 import Reveal from "./Reveal";
-import { ArrowRight } from "./Icons";
+import { ArrowRight, WhatsApp } from "./Icons";
 
 // TODO: Fragen/Antworten nach Bedarf anpassen.
 const faqs: {
@@ -34,11 +35,26 @@ const faqs: {
   },
 ];
 
+// FAQPage structured data — helps the questions surface directly in Google.
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+
 export default function Faq() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
     <section id="faq" className="relative py-24 sm:py-32">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="container-x grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
         <Reveal className="lg:sticky lg:top-28 lg:self-start">
           <p className="eyebrow mb-4 text-bubble">FAQ</p>
@@ -48,6 +64,16 @@ export default function Faq() {
           <p className="mt-5 text-lg text-chalk-muted">
             Noch Fragen offen? Schreib uns einfach direkt.
           </p>
+          <a
+            href={`https://wa.me/${site.contact.whatsapp}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group mt-7 inline-flex cursor-pointer items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3.5 font-semibold text-chalk transition-colors duration-200 hover:border-bubble/50 hover:text-bubble"
+          >
+            <WhatsApp className="h-5 w-5" />
+            Frag uns direkt
+            <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+          </a>
         </Reveal>
 
         <div>
@@ -61,8 +87,13 @@ export default function Faq() {
                   className="flex w-full cursor-pointer items-center justify-between gap-6 py-6 text-left"
                   aria-expanded={isOpen}
                 >
-                  <span className="font-display text-xl uppercase tracking-tight sm:text-2xl">
-                    {item.q}
+                  <span className="flex items-baseline gap-4">
+                    <span className={`font-display text-sm transition-colors duration-200 ${isOpen ? "text-bubble" : "text-chalk-dim"}`}>
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="font-display text-xl uppercase tracking-tight sm:text-2xl">
+                      {item.q}
+                    </span>
                   </span>
                   <span
                     className={`relative flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/15 transition-colors duration-200 ${

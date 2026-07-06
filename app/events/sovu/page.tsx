@@ -3,13 +3,13 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
 import Magnetic from "@/components/Magnetic";
-import { ArrowRight, WhatsApp, Pin } from "@/components/Icons";
+import { ArrowRight, WhatsApp, Pin, Calendar, Check } from "@/components/Icons";
 import { sovu, site } from "@/data/site";
 
 export const metadata: Metadata = {
-  title: "SOVU — Day-to-Night Open Air | SAX-Events",
+  title: "SOVU — Day-to-Night Open Air am Oedter See | SAX-Events",
   description:
-    "SOVU ist unser Day-to-Night Sommer-Event: von entspannten Stunden bei Tag über die goldene Stunde bis zur Party tief in die Nacht.",
+    "SOVU: entspanntes Day-to-Night Open Air am Oedter See in Traun (16–24 Uhr). House & Electronic, gute Drinks, ruhiger Vibe — mit durchdachtem Sicherheits- und Lärmschutzkonzept.",
 };
 
 const waLink = `https://wa.me/${site.contact.whatsapp}`;
@@ -17,15 +17,15 @@ const CREAM = "#F7EFE1";
 const DARK = "#2B2118";
 const MUTED = "#6B5E4E";
 
-/** The day-to-night journey — colour instead of photos. */
+/** The day-to-night journey — colour, warmed up by real photos mid-way. */
 const phaseStyles = [
   // 01 Day
   { bg: "linear-gradient(to bottom, #F7EFE1, #F6E6C6)", text: DARK, muted: MUTED, accent: "#C2410C", ghost: "rgba(43,33,24,0.06)" },
-  // 02 Aperitivo
+  // 02 Aperitivo (photo)
   { bg: "linear-gradient(to bottom, #F6E6C6, #F4B860)", text: DARK, muted: "#5C4A33", accent: "#B23A0C", ghost: "rgba(43,33,24,0.08)" },
-  // 03 Sunset
+  // 03 Sunset (photo)
   { bg: "linear-gradient(to bottom, #F4B860, #C2410C 55%, #6E2A63)", text: "#FFFFFF", muted: "rgba(255,255,255,0.85)", accent: "#FFE0B0", ghost: "rgba(255,255,255,0.10)" },
-  // 04 Night
+  // 04 Ausklang / Night
   { bg: "linear-gradient(to bottom, #6E2A63, #1A0A24 60%, #0A0A0B)", text: "#FFFFFF", muted: "rgba(255,255,255,0.75)", accent: "#FF8A4C", ghost: "rgba(255,255,255,0.06)" },
 ];
 
@@ -65,18 +65,30 @@ export default function SovuPage() {
                 {sovu.tagline}
               </p>
             </Reveal>
-            <Reveal delay={0.2}>
-              <p className="mt-8 max-w-xl text-base leading-relaxed sm:text-lg" style={{ color: MUTED }}>
+
+            {/* Date + location line */}
+            <Reveal delay={0.18}>
+              <div className="mt-7 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-semibold" style={{ color: DARK }}>
+                <span className="inline-flex items-center gap-2">
+                  <Calendar className="h-4 w-4" style={{ color: "#C2410C" }} />
+                  {sovu.dateLabel}
+                  <span className="rounded-full px-2 py-0.5 text-xs font-medium" style={{ backgroundColor: "rgba(194,65,12,0.12)", color: "#C2410C" }}>
+                    {sovu.dateNote}
+                  </span>
+                </span>
+                <span className="inline-flex items-center gap-2">
+                  <Pin className="h-4 w-4" style={{ color: "#C2410C" }} />
+                  {sovu.location}
+                </span>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.26}>
+              <p className="mt-7 max-w-xl text-base leading-relaxed sm:text-lg" style={{ color: MUTED }}>
                 {sovu.intro}
               </p>
             </Reveal>
-            <Reveal delay={0.28}>
-              <p className="mt-6 inline-flex items-center gap-2 text-sm font-medium" style={{ color: "#9A8C77" }}>
-                <Pin className="h-4 w-4" style={{ color: "#C2410C" }} />
-                {sovu.location}
-              </p>
-            </Reveal>
-            <Reveal delay={0.36}>
+            <Reveal delay={0.34}>
               <a
                 href="#dabei"
                 className="group mt-9 inline-flex cursor-pointer items-center gap-2 rounded-full px-8 py-4 text-base font-semibold text-white transition-transform duration-200 hover:-translate-y-0.5"
@@ -101,40 +113,60 @@ export default function SovuPage() {
                 Das Wichtigste in Kürze
               </span>
               <h2 className="mt-3 font-display text-4xl uppercase leading-[0.95] tracking-tight sm:text-5xl">
-                Ein Event, ein ganzer Tag.
+                Ein Nachmittag, ein Abend.
               </h2>
             </Reveal>
-            <div className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl lg:grid-cols-4" style={{ backgroundColor: "rgba(43,33,24,0.12)" }}>
-              {sovu.facts.map((f, i) => (
-                <Reveal key={f.label} delay={i * 0.08} className="bg-[#F6E6C6] p-6 sm:p-7">
+            <div className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl lg:grid-cols-3" style={{ backgroundColor: "rgba(43,33,24,0.12)" }}>
+              {sovu.facts.map((f) => (
+                <div key={f.label} className="bg-[#F6E6C6] p-6 sm:p-7">
                   <div className="text-xs uppercase tracking-[0.18em]" style={{ color: MUTED }}>
                     {f.label}
                   </div>
-                  <div className="mt-2 font-display text-xl uppercase leading-tight tracking-tight sm:text-3xl">
+                  <div className="mt-2 font-display text-xl uppercase leading-tight tracking-tight sm:text-2xl">
                     {f.value}
                   </div>
-                </Reveal>
+                </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* ============ THE DAY-TO-NIGHT JOURNEY (colour, no photos) ============ */}
+        {/* ============ THE DAY-TO-NIGHT JOURNEY ============ */}
         {sovu.phases.map((p, i) => {
           const s = phaseStyles[i];
+          const hasImg = "img" in p && Boolean(p.img);
           const alignRight = i % 2 === 1;
+          const text = hasImg ? "#FFFFFF" : s.text;
+          const muted = hasImg ? "rgba(255,255,255,0.82)" : s.muted;
+          const accent = hasImg ? "#FFD9A8" : s.accent;
+          const ghost = hasImg ? "rgba(255,255,255,0.12)" : s.ghost;
           return (
             <section
               key={p.no}
               className="relative flex min-h-[78svh] items-center overflow-hidden py-20 sm:min-h-[92svh] sm:py-24"
-              style={{ background: s.bg, color: s.text }}
+              style={hasImg ? { color: text } : { background: s.bg, color: text }}
             >
+              {hasImg && (
+                <>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={(p as { img: string }).img}
+                    alt={`${p.label} — SOVU am Oedter See`}
+                    className="absolute inset-0 h-full w-full object-cover"
+                  />
+                  <div
+                    className="absolute inset-0"
+                    style={{ background: "linear-gradient(to top, rgba(8,6,14,0.9), rgba(8,6,14,0.3) 55%, rgba(8,6,14,0.55))" }}
+                  />
+                </>
+              )}
+
               {/* huge ghost numeral — opposite side of the text */}
               <span
                 className={`pointer-events-none absolute top-1/2 -translate-y-1/2 font-display text-[34vw] leading-none sm:text-[24rem] lg:text-[28rem] ${
                   alignRight ? "right-[-6vw] lg:left-[-4vw] lg:right-auto" : "right-[-6vw]"
                 }`}
-                style={{ color: s.ghost }}
+                style={{ color: ghost }}
               >
                 {p.no}
               </span>
@@ -144,18 +176,18 @@ export default function SovuPage() {
                   <div className={`flex flex-wrap items-center gap-3 ${alignRight ? "lg:justify-end" : ""}`}>
                     <span
                       className="rounded-full border px-4 py-1.5 font-display text-sm uppercase tracking-wide"
-                      style={{ borderColor: s.accent, color: s.accent }}
+                      style={{ borderColor: accent, color: accent }}
                     >
                       {p.time}
                     </span>
-                    <span className="font-display text-sm uppercase tracking-[0.2em]" style={{ color: s.muted }}>
+                    <span className="font-display text-sm uppercase tracking-[0.2em]" style={{ color: muted }}>
                       {p.label}
                     </span>
                   </div>
                   <h2 className="mt-6 font-display text-5xl uppercase leading-[0.9] tracking-tight sm:text-7xl lg:text-8xl">
                     {p.title}
                   </h2>
-                  <p className={`mt-5 max-w-lg text-lg leading-relaxed sm:mt-6 sm:text-xl ${alignRight ? "lg:ml-auto" : ""}`} style={{ color: s.muted }}>
+                  <p className={`mt-5 max-w-lg text-lg leading-relaxed sm:mt-6 sm:text-xl ${alignRight ? "lg:ml-auto" : ""}`} style={{ color: muted }}>
                     {p.text}
                   </p>
                 </Reveal>
@@ -164,19 +196,106 @@ export default function SovuPage() {
           );
         })}
 
-        {/* ============ ABLAUF — Vom Termin zur Party ============ */}
+        {/* ============ KONZEPT & SICHERHEIT ============ */}
         <section className="relative bg-ink py-24 sm:py-32">
           <div className="container-x">
             <Reveal className="max-w-2xl">
               <p className="font-display text-sm uppercase tracking-[0.2em]" style={{ color: "#FF8A4C" }}>
-                So gehen wir&apos;s an
+                Konzept & Sicherheit
+              </p>
+              <h2 className="mt-3 font-display text-5xl uppercase leading-[0.9] tracking-tight text-white sm:text-6xl">
+                Durchdacht. Sicher.{" "}
+                <span style={{ color: "#FF8A4C" }}>Rücksichtsvoll.</span>
+              </h2>
+              <p className="mt-5 text-lg leading-relaxed text-chalk-muted">
+                SOVU ist ein ruhiges, sauber organisiertes Open Air. Begrenzte
+                Gästezahl, klarer Aufbau und ein Lärmschutz, der Anrainer und
+                Natur bewusst respektiert.
+              </p>
+            </Reveal>
+
+            {/* Lageplan / site map */}
+            <Reveal className="mt-12">
+              <figure className="overflow-hidden rounded-[2rem] border border-white/10 bg-ink-700">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/images/sovu/lageplan.jpg"
+                  alt="Geländeaufteilung der SOVU Outdoor-Party am Oedter See: umzäunter Partybereich, DJ-Pult, zwei Ein- und Ausgänge, öffentliche Toiletten und Starkstromanschluss."
+                  className="w-full"
+                />
+              </figure>
+              <figcaption className="mt-3 text-sm text-chalk-dim">
+                Geländeaufteilung am Oedter See — umzäunter Partybereich, zwei
+                Ein-/Ausgänge, Sanitäranlagen und fester Stromanschluss.
+              </figcaption>
+            </Reveal>
+
+            {/* Safety grid */}
+            <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {sovu.safety.map((item, i) => (
+                <Reveal
+                  key={item.title}
+                  delay={(i % 3) * 0.06}
+                  className="rounded-2xl border border-white/10 bg-white/[0.025] p-6"
+                >
+                  <span
+                    className="flex h-10 w-10 items-center justify-center rounded-full"
+                    style={{ backgroundColor: "rgba(255,138,76,0.14)", color: "#FF8A4C" }}
+                  >
+                    <Check className="h-5 w-5" />
+                  </span>
+                  <h3 className="mt-4 font-display text-lg uppercase tracking-tight text-white">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-chalk-muted">{item.text}</p>
+                </Reveal>
+              ))}
+            </div>
+
+            {/* Anrainer / noise-protection highlight */}
+            <Reveal className="mt-6">
+              <div
+                className="grid gap-8 rounded-[2rem] border border-white/10 p-8 sm:p-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-12"
+                style={{ background: "linear-gradient(135deg, rgba(255,122,61,0.10), rgba(10,10,11,0.2))" }}
+              >
+                <div>
+                  <p className="font-display text-sm uppercase tracking-[0.2em]" style={{ color: "#FF8A4C" }}>
+                    Rücksicht auf Anrainer & Natur
+                  </p>
+                  <h3 className="mt-3 font-display text-3xl uppercase leading-[0.95] tracking-tight text-white sm:text-4xl">
+                    Leise, wo es zählt.
+                  </h3>
+                  <p className="mt-4 leading-relaxed text-chalk-muted">
+                    Uns ist wichtig, dass ringsum niemand gestört wird. Deshalb
+                    setzen wir auf moderate Lautstärke, klare Endzeiten und einen
+                    entspannten Sound — kein lauter Rummel.
+                  </p>
+                </div>
+                <ul className="space-y-3">
+                  {sovu.neighbours.map((n) => (
+                    <li key={n} className="flex items-start gap-3 text-chalk">
+                      <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full" style={{ backgroundColor: "rgba(255,138,76,0.16)", color: "#FF8A4C" }}>
+                        <Check className="h-4 w-4" />
+                      </span>
+                      {n}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* ============ ABLAUF — Vom Termin zur Party ============ */}
+        <section className="relative bg-ink pb-24 sm:pb-32">
+          <div className="container-x">
+            <Reveal className="max-w-2xl">
+              <p className="font-display text-sm uppercase tracking-[0.2em]" style={{ color: "#FF8A4C" }}>
+                So läuft&apos;s ab
               </p>
               <h2 className="mt-3 font-display text-5xl uppercase leading-[0.9] tracking-tight text-white sm:text-6xl">
                 Vom Termin zur Party.
               </h2>
-              <p className="mt-5 text-lg leading-relaxed text-chalk-muted">
-                Ein durchdachter Ablauf — von der ersten Idee bis zum letzten Track. Wir übernehmen alles, ihr feiert.
-              </p>
             </Reveal>
 
             <div className="relative mt-16 grid gap-px sm:grid-cols-2 lg:grid-cols-4">
@@ -192,7 +311,7 @@ export default function SovuPage() {
                   >
                     {step.no}
                   </div>
-                  <h3 className="mt-5 font-display text-2xl uppercase tracking-tight text-white">
+                  <h3 className="mt-5 font-display text-xl uppercase tracking-tight text-white sm:text-2xl">
                     {step.title}
                   </h3>
                   <p className="mt-2 max-w-xs text-chalk-muted">{step.text}</p>
@@ -226,11 +345,19 @@ export default function SovuPage() {
               <h3 className="mt-6 font-display text-4xl uppercase leading-[0.95] tracking-tight text-white sm:text-5xl">
                 Sei von Anfang an dabei.
               </h3>
-              <p className="mt-5 flex items-center justify-center gap-2 text-lg text-white/80">
-                <Pin className="h-5 w-5" style={{ color: "#FF8A4C" }} />
-                {sovu.location}
+              <div className="mt-5 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-white/80">
+                <span className="inline-flex items-center gap-2">
+                  <Calendar className="h-5 w-5" style={{ color: "#FF8A4C" }} />
+                  {sovu.dateLabel} · {sovu.dateNote}
+                </span>
+                <span className="inline-flex items-center gap-2">
+                  <Pin className="h-5 w-5" style={{ color: "#FF8A4C" }} />
+                  {sovu.location}
+                </span>
+              </div>
+              <p className="mt-3 text-white/60">
+                Eintritt &amp; Bar vor Ort · Preise auf Anfrage · begrenzte Plätze.
               </p>
-              <p className="mt-2 text-white/60">Termine folgen — sichere dir dein Update.</p>
             </Reveal>
             <Reveal delay={0.2}>
               <div className="mt-9 flex flex-wrap items-center justify-center gap-3">

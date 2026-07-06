@@ -184,57 +184,83 @@ export const freaky = {
   ],
 };
 
-// ---- SOVU (Day-to-Night Open-Air Sommer-Event) -----------------------
-// Bewusst allgemein gehalten & bildfrei (echte Fotos folgen).
+// ---- SOVU (Day-to-Night Open-Air am Oedter See, Traun) ---------------
+// Entspanntes Elektro/House-Event, 16–24 Uhr, ruhiger Vibe, Publikum 20–50.
+// Die Seite dient auch als seriöse Konzept-Vorlage (Kapazität, Sicherheit,
+// Anrainer-Rücksicht) — deshalb der Sicherheits-/Organisationsteil.
 export const sovu = {
   name: "SOVU",
   tagline: "Day-to-Night Open Air",
-  location: "Open Air · Österreich",
+  location: "Oedter See · Traun",
+  dateLabel: "14. August 2026",
+  dateNote: "in Planung",
+  timeLabel: "16:00 – 24:00 Uhr",
   intro:
-    "SOVU ist unser Day-to-Night Sommer-Event: Es startet entspannt am Nachmittag mit Sonne, Drinks und guter Gesellschaft — und wächst über die goldene Stunde zur Party, die bis tief in die Nacht geht. Ein Tag, ein Ort, ein Vibe, der einfach nicht aufhört.",
+    "SOVU ist unser Day-to-Night Open Air am Oedter See in Traun: entspannt am Nachmittag mit Sonne, guten Drinks und feinen House-Vibes — bis aus der goldenen Stunde ein stimmungsvoller, ruhiger Abend wird. Kein lauter Rummel, sondern ein gepflegtes Open Air für alle, die guten Sound und gute Gesellschaft schätzen.",
   // Schnelle Fakten zum Überblick
   facts: [
-    { label: "Format", value: "Day-to-Night Open Air" },
-    { label: "Saison", value: "Sommer" },
-    { label: "Termin", value: "folgt bald" },
-    { label: "Für wen", value: "Die neue Generation" },
+    { label: "Termin", value: "14. Aug 2026" },
+    { label: "Zeit", value: "16 – 24 Uhr" },
+    { label: "Ort", value: "Oedter See · Traun" },
+    { label: "Musik", value: "House · Electronic" },
+    { label: "Publikum", value: "20 – 50 Jahre" },
+    { label: "Kapazität", value: "max. 300" },
   ],
-  // Der Tagesverlauf — reine Stimmungsbeschreibung, ohne Fotos.
+  // Der Tagesverlauf — entspannt, ruhig, kein Vollgas.
   phases: [
     {
       no: "01",
-      time: "Nachmittag",
+      time: "ab 16 Uhr",
       label: "Day Vibe",
-      title: "Ankommen & chillen.",
-      text: "Sonne auf der Haut, entspannte Beats und ein kühler Drink. Ein lockerer Start, bei dem alle ankommen und die Crowd zusammenwächst.",
+      title: "Ankommen am See.",
+      text: "Sonne am Wasser, kühle Drinks und ruhige House-Beats. Ein entspannter Nachmittag, bei dem alle ankommen.",
     },
     {
       no: "02",
       time: "Früher Abend",
       label: "Aperitivo",
-      title: "Drinks & gute Leute.",
-      text: "Der genussvolle Übergang in den Abend: Aperitivo, gute Musik und eine Stimmung, die langsam Fahrt aufnimmt.",
+      title: "Drinks & gute Gesellschaft.",
+      text: "Aperitivo an der Bar, feine Elektronik und gute Leute — genussvoll und gesellig, nie hektisch.",
+      img: "/images/sovu/party-2.jpg",
     },
     {
       no: "03",
       time: "Goldene Stunde",
       label: "Sunset",
       title: "Die goldene Stunde.",
-      text: "Wenn die Sonne tiefer steht, wird die Musik wärmer und die Stimmung dichter. Der Moment, auf den alle warten.",
+      text: "Wenn die Sonne über dem Oedter See sinkt, wird die Musik wärmer und der Moment magisch — der Höhepunkt des Abends.",
+      img: "/images/sovu/party-1.jpg",
     },
     {
       no: "04",
-      time: "Nacht",
-      label: "Night",
-      title: "Die Nacht beginnt.",
-      text: "DJ, Lights, Crowd. Aus dem Sundowner wird die Party — voller Energie, bis tief in die Nacht.",
+      time: "bis 24 Uhr",
+      label: "Ausklang",
+      title: "Ruhiger Ausklang.",
+      text: "Warme Lichter, entspannter Sound — und zum späteren Abend fahren wir die Lautstärke bewusst zurück. Um Mitternacht ist Schluss.",
     },
   ],
+  // Sicherheits- & Organisationskonzept (schön aufbereitet für die Seite).
+  safety: [
+    { title: "Begrenzte Kapazität", text: "Max. 300 Gäste, gezählter Einlass — kein Überfüllen." },
+    { title: "Zwei Ein- & Ausgänge", text: "Getrennte Zu- und Abgänge, jederzeit freie Fluchtwege." },
+    { title: "Umzäuntes Gelände", text: "Klar abgegrenzter, kontrollierter Partybereich." },
+    { title: "Sanitäranlagen", text: "Öffentliche Toiletten direkt am Gelände." },
+    { title: "Fester Stromanschluss", text: "Starkstrom-Anschluss statt lauter Generatoren." },
+    { title: "Security & Ersthelfer", text: "Geschultes Ordnerpersonal und Erste Hilfe vor Ort." },
+  ],
+  // Rücksicht auf Anrainer & Natur — der Kern des Lärmschutz-Konzepts.
+  neighbours: [
+    "Ende um 24:00 Uhr — pünktlich Schluss.",
+    "Lautstärke wird zum Abend hin schrittweise reduziert.",
+    "Entspanntes Genre (House / Electronic) in moderater Lautstärke.",
+    "Beschallung bewusst von der Wohnbebauung weg ausgerichtet.",
+    "Weitläufige Grünfläche am See — mit Abstand & Parkplätzen.",
+  ],
   process: [
-    { no: "01", title: "Termin & Location", text: "Wir wählen Termin und Location — passend zu Saison, Wetter und Vibe." },
-    { no: "02", title: "Organisation", text: "Genehmigungen, Behörden, Planung — wir übernehmen die komplette Organisation von A bis Z." },
-    { no: "03", title: "Promo & Hype", text: "Promo-Content mit Crew & Statisten — Reels und Visuals, die vorab Hype auf Instagram & TikTok machen." },
-    { no: "04", title: "Event-Tag", text: "Technik, Bar, Showacts und Crew: Wir liefern den Tag — von der Sonne am Nachmittag bis tief in die Nacht." },
+    { no: "01", title: "Anmeldung & Auflagen", text: "Behördlich sauber angemeldet — alle Auflagen werden erfüllt." },
+    { no: "02", title: "Aufbau & Sicherheit", text: "Umzäunung, zwei Ein-/Ausgänge, Sanitär, Strom, Security & Erste Hilfe stehen bereit." },
+    { no: "03", title: "Einlass & Bar", text: "Eintritt mit Ausweiskontrolle, verantwortungsvoller Ausschank, entspanntes Publikum." },
+    { no: "04", title: "Event-Tag · 16–24 Uhr", text: "Von der Nachmittagssonne bis zum ruhigen Ausklang um Mitternacht — durchgängig betreut." },
   ],
 };
 

@@ -264,47 +264,43 @@ export const sovu = {
   ],
 };
 
-// ---- Team (Struktur: Management / Social Media / Acts & Performers) --
-// TODO: echte Namen ergänzen ("Name folgt" ersetzen) + Fotos nach
-// public/images/team/ legen (Dateinamen unten) — bis dahin zeigt SmartImg
-// automatisch "Foto folgt".
+// ---- Team ------------------------------------------------------------
+// TODO: Lia = Nachname/genaue Rolle bestätigen (aktuell "Co-Lead").
+// Fotos in public/images/team/: leon.jpg, leon-lia.jpg (Duo), team-all.jpg.
 export const team = {
   eyebrow: "Die Crew",
   intro:
-    "Events wie unsere entstehen nicht allein. Hinter SAX-Events steht eine Crew aus Organisation, Content und Show — von jung für jung.",
+    "Events wie unsere entstehen nicht allein. Hinter SAX-Events steht eine junge Crew aus Management, Content und Show — von jung für jung.",
+  // Die Köpfe (Duo-Foto Leon + Lia)
+  leadsImg: "/images/team/leon-lia.jpg",
+  leads: [
+    { name: "Leon Saxinger", role: "Founder & Event Management" },
+    { name: "Lia", role: "Co-Lead & Social Media" },
+  ],
+  // Gruppenbild der ganzen Crew
+  groupImg: "/images/team/team-all.jpg",
+  // Abteilungen (Beschreibung, keine Einzelporträts nötig)
   departments: [
     {
       no: "01",
       name: "Management",
       accent: "accent" as const,
-      blurb: "Konzept, Booking, Organisation — hier laufen alle Fäden zusammen.",
-      members: [
-        { name: "Leon Saxinger", role: "Founder & Event Management", img: "/images/team/leon.jpg" },
-        { name: "Name folgt", role: "Organisation & Booking", img: "/images/team/management-2.jpg" },
-      ],
+      blurb:
+        "Konzept, Booking, Organisation & Genehmigungen — hier laufen alle Fäden zusammen und jedes Event wird geplant.",
     },
     {
       no: "02",
       name: "Social Media",
       accent: "grape" as const,
-      blurb: "1,5 Mio Views im Monat kommen nicht von allein — unser Content-Team liefert.",
-      members: [
-        { name: "Name folgt", role: "Content Creation", img: "/images/team/social-1.jpg" },
-        { name: "Name folgt", role: "Video & Schnitt", img: "/images/team/social-2.jpg" },
-        { name: "Name folgt", role: "Fotografie", img: "/images/team/social-3.jpg" },
-      ],
+      blurb:
+        "1,5 Mio Views im Monat kommen nicht von allein: Content, Video, Schnitt & Fotografie — das Team, das den Hype macht.",
     },
     {
       no: "03",
       name: "Acts & Performers",
       accent: "coral" as const,
-      blurb: "Showacts, Tänzerinnen und Hosts — die Energie auf der Bühne und in der Crowd.",
-      members: [
-        { name: "Name folgt", role: "Showacts", img: "/images/team/act-1.jpg" },
-        { name: "Name folgt", role: "Dance", img: "/images/team/act-2.jpg" },
-        { name: "Name folgt", role: "Dance", img: "/images/team/act-3.jpg" },
-        { name: "Name folgt", role: "Host & Moderation", img: "/images/team/act-4.jpg" },
-      ],
+      blurb:
+        "Showacts, Tänzer:innen, Promo & Hosting — die Energie auf der Bühne und mitten in der Crowd.",
     },
   ],
 };
@@ -316,30 +312,38 @@ export const office = {
   address: "Traunuferstraße 130, 4052 Ansfelden",
   mapsQuery: "Traunuferstraße 130, Ansfelden, Österreich",
   intro:
-    "Unser modernes Office & Creative Space in Ansfelden (nahe Linz) — buchbar für Meetings, Coworking, Shootings, Content, Tanz, Yoga und kreatives Arbeiten. Professionell ausgestattet, flexibel mietbar.",
+    "Unser modernes Office & Creative Space in Ansfelden (nahe Linz) — buchbar für Meetings, Coworking, Shootings, Content, Tanz und kreatives Arbeiten. Professionell ausgestattet, flexibel mietbar.",
+  // Der Creative Room als eigenes, buchbares Highlight.
+  creative: {
+    title: "Creative Room",
+    subtitle: "Dein Studio zum Buchen",
+    text: "Voll ausgestatteter Studio-Raum mit Softbox-Licht, Fotohintergrund und 5-Meter-Spiegelwand. Perfekt für alles, was Content braucht — separat mietbar, stundenweise oder für den ganzen Tag.",
+    tags: ["Social Media", "Fotoshoots", "Videodrehs", "Tanzstudio", "Content", "Podcasts"],
+    images: ["/images/office/creative.jpg", "/images/office/mirror.jpg"],
+  },
   rooms: [
-    { icon: "monitor", title: "Office & Arbeitsplätze", text: "Voll ausgestattete Arbeitsplätze zum konzentrierten Arbeiten.", img: "/images/office/office.jpg" },
-    { icon: "users", title: "Besprechungsraum", text: "Platz für Meetings, Calls und Präsentationen.", img: "/images/office/meeting.jpg" },
-    { icon: "palette", title: "Creative Room", text: "Separater Raum für Ideen, Proben und kreatives Arbeiten.", img: "/images/office/creative.jpg" },
-    { icon: "mirror", title: "5-Meter-Spiegelwand", text: "Große Spiegelwand — ideal für Tanz, Yoga, Shootings & Content.", img: "/images/office/mirror.jpg" },
+    { icon: "monitor", title: "Office & Arbeitsplätze", text: "Voll ausgestattete Arbeitsplätze zum konzentrierten Arbeiten & Coworking.", img: "/images/office/office.jpg" },
+    { icon: "users", title: "Besprechungsraum", text: "Stylischer Meetingraum für Calls, Präsentationen & Workshops.", img: "/images/office/meeting.jpg" },
+    { icon: "palette", title: "Creative Room", text: "Studio mit Softbox-Licht & Fotohintergrund — für Content, Shootings & Videodrehs.", img: "/images/office/creative.jpg" },
+    { icon: "mirror", title: "Spiegelwand & Tanzstudio", text: "5-Meter-Spiegelwand — ideal für Tanz, Proben, Shootings & Bewegung.", img: "/images/office/mirror.jpg" },
   ],
   useCases: [
+    "Social Media",
+    "Fotoshoots",
+    "Videodrehs",
+    "Tanzstudio",
     "Meetings",
     "Coworking",
     "Workshops",
-    "Shootings",
     "Content Creation",
-    "Tanz",
-    "Yoga",
-    "Proben / Creative Work",
   ],
   gallery: [
-    "/images/office/01.jpg",
-    "/images/office/02.jpg",
-    "/images/office/03.jpg",
-    "/images/office/04.jpg",
-    "/images/office/05.jpg",
-    "/images/office/06.jpg",
+    "/images/office/creative.jpg",
+    "/images/office/office.jpg",
+    "/images/office/mirror.jpg",
+    "/images/office/lounge.jpg",
+    "/images/office/meeting.jpg",
+    "/images/office/kitchen.jpg",
   ],
 };
 

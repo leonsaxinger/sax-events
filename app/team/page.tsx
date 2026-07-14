@@ -12,7 +12,6 @@ export const metadata: Metadata = {
     "Die Crew hinter SAX-Events: Management, Social Media und Acts & Performers — von jung für jung.",
 };
 
-// Tailwind can't build class names dynamically — map the department accents.
 const accentText: Record<string, string> = {
   accent: "text-accent",
   grape: "text-grape",
@@ -30,7 +29,7 @@ export default function TeamPage() {
       <Navbar />
       <main className="pt-32 sm:pt-40">
         {/* ============ Intro ============ */}
-        <section className="container-x pb-20 sm:pb-24">
+        <section className="container-x pb-16 sm:pb-20">
           <Reveal>
             <p className="eyebrow mb-4 text-acid">{team.eyebrow}</p>
             <h1 className="font-display text-6xl uppercase leading-[0.9] tracking-tight sm:text-8xl">
@@ -44,66 +43,104 @@ export default function TeamPage() {
           </Reveal>
         </section>
 
-        {/* ============ Departments ============ */}
-        {team.departments.map((dep, di) => (
-          <section key={dep.no} className="container-x py-14 sm:py-16">
-            {/* Department header — same label pattern as the homepage */}
-            <Reveal className="flex items-center gap-5 border-t border-white/10 pt-12">
-              <span className="ghost-num font-display text-6xl leading-none sm:text-7xl">
-                {dep.no}
-              </span>
-              <div>
-                <h2 className="font-display text-3xl uppercase leading-none tracking-tight sm:text-4xl">
-                  {dep.name}
+        {/* ============ Leads / die Köpfe ============ */}
+        <section className="container-x pb-16 sm:pb-24">
+          <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-14">
+            <Reveal>
+              <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-br from-ink-700 to-ink-600 sm:aspect-[5/4] lg:aspect-[4/5]">
+                <SmartImg src={team.leadsImg} alt="Leon & Lia" className="h-full w-full object-cover" />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/50 to-transparent" />
+              </div>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <p className="eyebrow mb-4 text-acid">Die Köpfe dahinter</p>
+              <h2 className="font-display text-4xl uppercase leading-[0.95] tracking-tight sm:text-5xl">
+                Klein gestartet, groß gedacht.
+              </h2>
+              <p className="mt-5 leading-relaxed text-chalk-muted">
+                Angefangen als Idee, heute eine Marke mit eigener Community. Wir
+                bauen SAX-Events Event für Event weiter aus.
+              </p>
+              <div className="mt-8 space-y-4">
+                {team.leads.map((l) => (
+                  <div key={l.name} className="flex items-baseline gap-4 border-t border-white/10 pt-4">
+                    <span className="font-display text-lg uppercase tracking-tight sm:text-xl">
+                      {l.name}
+                    </span>
+                    <span className="text-sm text-acid">{l.role}</span>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* ============ Ganze Crew — Gruppenbild ============ */}
+        <section className="relative">
+          <div className="container-x">
+            <Reveal className="relative overflow-hidden rounded-[2.5rem] border border-white/10">
+              <div className="relative aspect-[16/11] w-full bg-gradient-to-br from-ink-700 to-ink-600 sm:aspect-[16/9]">
+                <SmartImg src={team.groupImg} alt="Das ganze SAX-Events Team" className="h-full w-full object-cover" />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-transparent" />
+              </div>
+              <div className="absolute inset-x-0 bottom-0 p-7 sm:p-10">
+                <h2 className="font-display text-3xl uppercase leading-[0.95] tracking-tight text-white sm:text-5xl">
+                  Die ganze Crew.
                 </h2>
-                <p className={`mt-2 text-sm font-medium sm:text-base ${accentText[dep.accent]}`}>
-                  {dep.blurb}
+                <p className="mt-2 max-w-xl text-sm text-chalk-muted sm:text-base">
+                  Management, Content & Performer — das Team, das jeden Event trägt.
                 </p>
               </div>
             </Reveal>
+          </div>
+        </section>
 
-            {/* Members */}
-            <div className="mt-10 grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4">
-              {dep.members.map((m, i) => (
-                <Reveal key={`${dep.no}-${i}`} delay={(i % 4) * 0.07}>
-                  <article className="group relative aspect-[3/4] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-ink-700 to-ink-600">
-                    <SmartImg
-                      src={m.img}
-                      alt={m.name !== "Name folgt" ? m.name : m.role}
-                      className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                    />
-                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/20 to-transparent" />
-                    <span
-                      className={`absolute inset-x-0 bottom-0 h-1 origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100 ${accentBar[dep.accent]}`}
-                    />
-                    <div className="absolute bottom-4 left-4 right-4 sm:bottom-5 sm:left-5 sm:right-5">
-                      <p className={`text-[0.65rem] uppercase tracking-[0.22em] sm:text-xs ${accentText[dep.accent]}`}>
-                        {m.role}
-                      </p>
-                      <p className="mt-1 font-display text-lg uppercase leading-tight tracking-tight sm:text-xl">
-                        {m.name}
-                      </p>
-                    </div>
-                  </article>
-                </Reveal>
-              ))}
-            </div>
-          </section>
-        ))}
+        {/* ============ Abteilungen ============ */}
+        <section className="container-x py-20 sm:py-28">
+          <Reveal className="mb-12 max-w-2xl">
+            <p className="eyebrow mb-4 text-acid">Wie wir aufgestellt sind</p>
+            <h2 className="font-display text-4xl uppercase leading-[0.95] tracking-tight sm:text-5xl">
+              Drei Bereiche, ein Ziel.
+            </h2>
+          </Reveal>
+          <div className="grid gap-5 md:grid-cols-3">
+            {team.departments.map((dep, i) => (
+              <Reveal
+                key={dep.no}
+                delay={i * 0.08}
+                className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.025] p-7"
+              >
+                <span
+                  className={`absolute inset-x-0 top-0 h-1 origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100 ${accentBar[dep.accent]}`}
+                />
+                <span className="ghost-num pointer-events-none absolute -right-1 -top-3 font-display text-[6rem] leading-none">
+                  {dep.no}
+                </span>
+                <span className={`relative font-display text-sm ${accentText[dep.accent]}`}>
+                  {dep.no}
+                </span>
+                <h3 className="relative mt-3 font-display text-2xl uppercase tracking-tight">
+                  {dep.name}
+                </h3>
+                <p className="relative mt-3 leading-relaxed text-chalk-muted">{dep.blurb}</p>
+              </Reveal>
+            ))}
+          </div>
+        </section>
 
         {/* ============ Join CTA ============ */}
-        <section className="container-x py-20 sm:py-28">
+        <section className="container-x pb-20 sm:pb-28">
           <Reveal className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-br from-ink-700 to-ink px-8 py-14 text-center sm:px-12 sm:py-16">
             <div
               className="pointer-events-none absolute left-1/2 top-0 h-40 w-[36rem] -translate-x-1/2"
               style={{ background: "radial-gradient(ellipse, rgba(163,230,53,0.16), transparent 70%)" }}
             />
             <h2 className="relative font-display text-4xl uppercase leading-[0.95] tracking-tight sm:text-5xl">
-              Du willst auf die <span className="text-acid">Liste?</span>
+              Willst du <span className="text-acid">Teil vom Team</span> werden?
             </h2>
             <p className="relative mx-auto mt-4 max-w-md text-chalk-muted">
               Ob Performance, Content oder Organisation — wir suchen immer Leute
-              mit Energie. Meld dich.
+              mit Energie. Meld dich, erzähl uns von dir.
             </p>
             <a
               href="/#kontakt"

@@ -19,7 +19,7 @@ import {
 export const metadata: Metadata = {
   title: "Creative Space mieten — SAX-Events",
   description:
-    "Modernes Office & Creative Space in Ansfelden (Linz-Land) — buchbar für Meetings, Coworking, Shootings, Content, Tanz & Yoga. Mit 5-Meter-Spiegelwand.",
+    "Modernes Office & Creative Space in Ansfelden (Linz-Land) — buchbar für Social Media, Fotoshoots, Videodrehs, Tanzstudio, Meetings & Content. Mit 5-Meter-Spiegelwand.",
 };
 
 const roomIcons: Record<string, (p: React.SVGProps<SVGSVGElement>) => React.JSX.Element> = {
@@ -84,7 +84,7 @@ export default function OfficePage() {
         </section>
 
         {/* ---- Use cases ---- */}
-        <section className="container-x py-12 sm:py-16">
+        <section className="container-x py-10 sm:py-12">
           <Reveal>
             <p className="eyebrow mb-5 text-bubble">Wofür?</p>
             <div className="flex flex-wrap gap-3">
@@ -100,8 +100,56 @@ export default function OfficePage() {
           </Reveal>
         </section>
 
+        {/* ---- Creative Room — buchbares Highlight ---- */}
+        <section className="container-x py-12 sm:py-16">
+          <div className="grid gap-6 lg:grid-cols-2 lg:items-stretch">
+            <Reveal className="grid grid-cols-2 gap-3 lg:grid-cols-1">
+              {office.creative.images.map((src, i) => (
+                <div
+                  key={src}
+                  className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-ink-700 to-ink-600"
+                >
+                  <SmartImg src={src} alt={`${office.creative.title} ${i + 1}`} className="h-full w-full object-cover" />
+                </div>
+              ))}
+            </Reveal>
+
+            <Reveal delay={0.1} className="flex flex-col justify-center rounded-[2rem] border border-bubble/25 bg-gradient-to-br from-bubble/[0.08] to-white/[0.02] p-8 sm:p-10">
+              <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-bubble/15 text-bubble">
+                <Palette className="h-6 w-6" />
+              </span>
+              <p className="mt-5 font-display text-sm uppercase tracking-[0.2em] text-bubble">
+                {office.creative.subtitle}
+              </p>
+              <h2 className="mt-2 font-display text-4xl uppercase leading-[0.95] tracking-tight sm:text-5xl">
+                {office.creative.title}
+              </h2>
+              <p className="mt-4 max-w-md leading-relaxed text-chalk-muted">
+                {office.creative.text}
+              </p>
+              <div className="mt-6 flex flex-wrap gap-2">
+                {office.creative.tags.map((t) => (
+                  <span
+                    key={t}
+                    className="rounded-full border border-bubble/30 bg-bubble/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-bubble"
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+              <a
+                href="#anfrage"
+                className="group mt-8 inline-flex w-fit cursor-pointer items-center gap-2 rounded-full bg-bubble px-7 py-3.5 font-semibold text-ink transition-transform duration-200 hover:-translate-y-0.5"
+              >
+                Creative Room buchen
+                <ArrowRight className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" />
+              </a>
+            </Reveal>
+          </div>
+        </section>
+
         {/* ---- Räume ---- */}
-        <section className="container-x py-12 sm:py-20">
+        <section className="container-x py-12 sm:py-16">
           <Reveal className="max-w-2xl">
             <p className="eyebrow mb-4 text-bubble">Die Räume</p>
             <h2 className="font-display text-4xl uppercase leading-[0.95] tracking-tight sm:text-5xl">
@@ -142,13 +190,13 @@ export default function OfficePage() {
               Der Space.
             </h2>
           </Reveal>
-          <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
+          <div className="mt-10 grid grid-flow-dense grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
             {office.gallery.map((src, i) => (
               <Reveal
                 key={src}
                 delay={(i % 3) * 0.06}
                 className={`relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-ink-700 to-ink-600 ${
-                  i % 4 === 0 ? "row-span-2 aspect-[3/4]" : "aspect-[4/3]"
+                  i === 0 ? "col-span-2 aspect-[16/10] sm:row-span-2 sm:aspect-auto" : "aspect-[4/3]"
                 }`}
               >
                 <SmartImg src={src} alt="Creative Space" className="h-full w-full object-cover transition-transform duration-500 hover:scale-105" />

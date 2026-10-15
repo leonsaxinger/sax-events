@@ -31,7 +31,7 @@ export default function EventsJar() {
         <div className="mt-14 grid gap-6 lg:grid-cols-2">
           {jars.map((jar, i) => (
             <Reveal key={jar.name} delay={i * 0.1}>
-              <EventJarCard jar={jar} />
+              <EventJarCard jar={jar} feature />
             </Reveal>
           ))}
         </div>

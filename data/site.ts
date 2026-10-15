@@ -100,16 +100,16 @@ export const jars = [
     logo: "",
     tagline: "Outdoor · Day to Night.",
     description:
-      "Das Open-Air-Sommerformat — von Sonnenuntergang bis tief in die Nacht.",
+      "Entspanntes Open Air am See — von der Nachmittagssonne bis zur goldenen Stunde.",
     tags: ["Open Air", "Summer", "Day to Night"],
     href: "/events/sovu",
     cta: "SOVU ansehen",
     available: true,
     video: "",
-    poster: "",
+    poster: "/images/sovu/party-1.jpg",
     coverGradient:
       "linear-gradient(135deg, #0a1a3a 0%, #1d4ed8 45%, #fb923c 80%, #fb7185 100%)",
-    accent: "#38bdf8",
+    accent: "#FF7A3D",
   },
 ];
 
